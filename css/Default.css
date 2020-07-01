@@ -50,7 +50,30 @@ body{
 .middle-content{
     margin-top: 30px;
 }
+.nav-dropdown{
+    display: none;
+}
+.dropdown-list{
+    background: none;
+    border: none;
+}
+.dropdown-list a{
+    background: none;
+    color: rgba(255, 255, 255 , 0.70);
+}
+.dropdown-list a:not(.active):hover{
+    background: none;
+    color: rgba(255, 255, 255 , 0.8);
+}
+.dropdown-list a.active{
+    background: none;
+    color: white;
+}
+
 @media only screen and (max-width: 576px) {
+    .nav-dropdown{
+        display: block;
+    }
     .TopNavbar,.main,.navHeader,.navListGroup{
         box-shadow: none;
     }
