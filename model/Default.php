@@ -1,7 +1,5 @@
 <?php 
-session_start();
-$title=$_SESSION['title'];
-$WebsiteName=$_SESSION['WebsiteName'];
+$WebsiteName='Zcytxcbyz';
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,13 +34,7 @@ $WebsiteName=$_SESSION['WebsiteName'];
                 <li class="nav-item dropdown nav-dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">导航</a>
                     <div class="dropdown-menu dropdown-list" aria-labelledby="dropdownId">
-                        <!-- php example
-                        $class='dropdown-item';
-                        echo '<a class="'.$class.' active" href="#">Item</a>';
-                        for ($i=0; $i < 9; $i++) { 
-                            echo '<a class="'.$class.'" href="#">Item</a>';
-                        }
-                    -->
+                    <?php if(isset($navDropdown)) echo $navDropdown;?>
                     </div>
                 </li>
             </ul>
@@ -59,17 +51,12 @@ $WebsiteName=$_SESSION['WebsiteName'];
                     <div class="card-header navHeader">导&nbsp;航</div>
                 </div>
                 <div class="list-group navListGroup">
-                    <!-- php example
-                    $class='list-group-item list-group-item-action';
-                    echo '<a href="#" class="'.$class.' active">Item</a>';
-                    for ($i=0; $i < 9; $i++) { 
-                        echo '<a href="#" class="'.$class.'">Item</a>';
-                    }
-                -->
+                <?php if(isset($navListGroup)) echo $navListGroup;?>
                 </div>
             </div>
             <div class="flex-grow-1" style="padding: 0 0 0 0;">
                 <div class="main">  
+                <?php if(isset($main)) echo $main;?>
                 </div>
             </div>
             <div class="bottom"> 
