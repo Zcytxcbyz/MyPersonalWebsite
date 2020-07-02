@@ -6,20 +6,33 @@ $dbname = 'zcytxcbyz';
 try {
     $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT name FROM types"); 
+    $stmt = $conn->prepare("SELECT name FROM types WHERE enabled=1"); 
     $stmt->execute();
-    $rows = $stmt->fetchAll(PDO::FETCH_COLUMN);
-    $class='dropdown-item';
-    $navDropdown='<a class="'.$class.' active" href="#">'.$rows[1].'</a>';
-    for ($i=2; $i < count($rows); $i++) { 
-        $navDropdown.='<a class="'.$class.'" href="#">'.$rows[$i].'</a>';
+    $types = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    $class='dropdown-item';//若要激活加'active'
+    $navDropdown=null;$navListGroup=null;
+    for ($i=0; $i < count($types); $i++) { 
+        $navDropdown.='<a class="'.$class.'" href="#'.$types[$i].'">'.$types[$i].'</a>';
     }
     $class='list-group-item list-group-item-action';
-    $navListGroup='<a href="#" class="'.$class.' active">'.$rows[1].'</a>';
-    for ($i=2; $i < count($rows); $i++) { 
-        $navListGroup.='<a href="#" class="'.$class.'">'.$rows[$i].'</a>';
+    for ($i=0; $i < count($types); $i++) { 
+        $navListGroup.='<a href="#'.$types[$i].'" class="'.$class.'">'.$types[$i].'</a>';
     }
-    $main='Loading...';
+    $main=null;
+    for ($i=0; $i < count($types); $i++) { 
+        $stmt = $conn->prepare("SELECT title,`describe` FROM `index` WHERE type='$types[$i]'"); 
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $main.='<div class="type" id="'.$types[$i].'">';
+        $main.='<h2>'.$types[$i].'</h2>';
+        foreach($result as $item){
+            $main.='<a class="category" href="#">';
+            $main.='<h4>'.$item['title'].'</h4>';
+            $main.='<p>'.$item['describe'].'</p>';
+            $main.='</a>';
+        }
+        $main.='</div><br/>';
+    }
 }
 catch(Exception $e)
 {

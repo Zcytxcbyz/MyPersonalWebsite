@@ -26,7 +26,7 @@ $WebsiteName='Zcytxcbyz';
                     <a class="nav-link" href="index.php">主页</a>
                 </li>
                 <li class="nav-item<?php if($title=='教程') echo ' active'?>">
-                    <a class="nav-link" href="course.php">教程</a>
+                    <a class="nav-link" href="#">教程</a>
                 </li>
                 <li class="nav-item<?php if($title=='工具') echo ' active'?>">
                     <a class="nav-link" href="tools.php">工具</a>
@@ -45,28 +45,26 @@ $WebsiteName='Zcytxcbyz';
         </div>
     </nav>
     <div class="container-fluid  middle-content">
-        <div class="row" style="height: 400px;">
-            <div class="leftNav">
-                <div class="card">
-                    <div class="card-header navHeader">导&nbsp;航</div>
-                </div>
-                <div class="list-group navListGroup">
+        <div class="leftNav">
+            <div class="card">
+                <div class="card-header navHeader">导&nbsp;航</div>
+            </div>
+            <div class="list-group navListGroup">
                 <?php if(isset($navListGroup)) echo $navListGroup;?>
-                </div>
-            </div>
-            <div class="flex-grow-1" style="padding: 0 0 0 0;">
-                <div class="main">  
-                <?php if(isset($main)) echo $main;?>
-                </div>
-            </div>
-            <div class="bottom"> 
-            <?php 
-            $year=date("Y");
-            if ($year==2020) echo "Copyright &copy; {$year} {$WebsiteName}";
-            else echo "Copyright &copy; 2020-{$year} {$WebsiteName}";    
-            ?>
             </div>
         </div>
+        <div class="rightContent">
+            <div class="main">
+                <?php if(isset($main)) echo $main?>
+            </div>
+        </div>
+    </div>
+    <div class="bottom"> 
+        <?php 
+        $year=date("Y");
+        if ($year==2020) echo "Copyright &copy; $year $WebsiteName";
+        else echo "Copyright &copy; 2020-$year $WebsiteName";    
+        ?>
     </div>
 </body>
 </html>
