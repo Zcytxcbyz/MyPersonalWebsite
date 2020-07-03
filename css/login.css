@@ -1,0 +1,47 @@
+.login{
+    float: left;
+}
+
+.login input[type=label]{
+    margin-right: 5px;
+}
+
+.login div{
+    margin-top: 10px;
+}
+
+.login h1{
+    text-align: center;
+}
+
+.login .captcha input{
+    width: 80px;
+}
+
+.login .submit{
+    clear: both;
+    text-align: center;
+}
+
+.login .captcha{
+    float: left;
+}
+
+.login .captcha_img{
+    float: right;
+    margin-left: 20px;
+}
+
+.login .captcha_img a{
+    float: right;
+}
+
+.login{
+    padding: 0px 20px 20px 20px;
+    border-style: solid;
+}
+
+.login .submit input{
+    width: 60px;
+    height: 30px;
+}

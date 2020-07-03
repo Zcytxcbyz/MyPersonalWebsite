@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            text-align: center;
+            margin-top: 100px;
+        }
+        *:not(body){
+            margin-top: 10px;
+        }
+    </style>
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../js/uploadimage.js"></script>
+    <title>上传图片</title>
+</head>
+<body>
+    <form action="" method="post" id="MainForm">
+        <label for="password">密码：</label>
+        <input type="password" id="password"><br>
+        <label for="file">文件名：</label>
+        <input type="file" id="file"><br>
+        <input type="button" id="submit" value="提交">
+    </form>
+    <div id="info"></div>
+</body>
+</html>

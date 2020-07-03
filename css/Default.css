@@ -127,5 +127,8 @@ background-color: rgb(230, 230, 230);
         margin: 0px 0px 0px 0px;
         padding: 0px 0px 0px 0px;
     }
+    .category{
+        margin-left: 30px;
+    }
 }
 

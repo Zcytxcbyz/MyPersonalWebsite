@@ -9,6 +9,20 @@
             "type":"php",
             "request":"launch",
             "port":9001
+        },
+        {
+            "name": "Attach to Chrome",
+            "port": 8027,
+            "request": "attach",
+            "type": "pwa-chrome",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "${file}",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }

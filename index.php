@@ -38,5 +38,5 @@ catch(Exception $e)
 {
     echo '<script>alert("'.$e->getMessage().'");</script>';
 }
-include('model/Default.php');
+include('templates/Default.php');
 ?>
