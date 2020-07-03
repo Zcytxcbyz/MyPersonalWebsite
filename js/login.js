@@ -12,13 +12,19 @@ $(document).ready(function () {
     $(".login").css("display","block");
 });
 
-function setpoint() { 
+function setpoint() {
     var winwidth=window.innerWidth;
     var winheight=window.innerHeight;  
     var height=parseFloat($(".login").css("height"));
-    var width=parseFloat($(".login").css("width"));
-    $(".login").css("margin-left",(winwidth-width)*0.45);
-    $(".login").css("margin-top",(winheight-height)*0.3);
+    var width=parseFloat($(".login").css("width")); 
+    if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        $(".login").css("margin-left",(winwidth-width)*0.1);
+        $(".login").css("margin-top",(winheight-height)*0.3);
+    } else {
+        $(".login").css("margin-left",(winwidth-width)*0.45);
+        $(".login").css("margin-top",(winheight-height)*0.3);
+    }
+   
 }
 
 function changecaptcha() { 
