@@ -1,3 +1,7 @@
+*{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 body{
     background-color: whitesmoke;
 }
@@ -6,9 +10,11 @@ body{
     background-color: cornflowerblue;
     box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.1);
 }
+
 .rightContent{
     overflow: hidden;
 }
+
 .main{
     background-color: white;          
     margin: 0px 10px 0px 20px;
@@ -16,11 +22,13 @@ body{
     padding: 20px 25px 20px 25px;
     overflow: hidden;
 }
+
 .leftNav{
     width: 225px;
     padding: 0px 5px 0px 20px;
     float: left;
 }
+
 .bottom{
     background-color: lightgray;
     font-size: smaller;
@@ -30,51 +38,64 @@ body{
     padding: 5px 5px 5px 5px;
     text-align: center;
 }
+
 .navHeader{
     background-color: CornflowerBlue;
     font-size: larger;
     color: white;
     text-align: center;    
 }
+
 .navListGroup{
     font-size:medium;
 }
+
 .navHeader,.navListGroup{
     box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.1);
 }
+
 .navListGroup a{
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
 .navListGroup a:not(.active):hover{
     background-color: lightgray;
 }
+
 .navListGroup a.active{
     background-color: LightSlateGray;
     border-color: LightSlateGray;
 }
+
 .middle-content{
     margin-top: 30px;
 }
+
 .nav-dropdown{
     display: none;
 }
+
 .dropdown-list{
     background: none;
     border: none;
 }
+
 .dropdown-list a{
     background: none;
     color: rgba(255, 255, 255 , 0.70);
 }
+
 .dropdown-list a:not(.active):hover{
     background: none;
     color: rgba(255, 255, 255 , 0.8);
 }
+
 .dropdown-list a.active{
     background: none;
     color: white;
 }
+
 .category{
     float: left;
     background-color: rgb(240, 240, 240);
@@ -86,47 +107,60 @@ body{
     cursor: pointer;
     margin: 10px 20px 10px 0px;
 }
+
 .category p{
-    font-size:xx-small;
+    font-size:12px;
 }
+
 .category h4{
     font-size: larger;
     color:CornflowerBlue;
 }
+
 .type{
     clear: both;
 }
+
 .type a{
     text-decoration: none;
     color:black;
 }
+
 .type a:hover{
-background-color: rgb(230, 230, 230);
+    background-color: rgb(230, 230, 230);
 }
+
 @media only screen and (max-width: 576px) {
     .nav-dropdown{
         display: block;
     }
+
     .TopNavbar,.main,.navHeader,.navListGroup{
         box-shadow: none;
     }
+
     .leftNav{
         display: none;
     }
+
     .rightContent{
         margin: 0px 0px 0px 0px;
     }
+
     .main{
         margin: 0px 0px 0px 0px;
         padding: 15px 10px 15px 10px;
     }
+
     .bottom{
         margin-top: 0;
     }
+
     .middle-content{
         margin: 0px 0px 0px 0px;
         padding: 0px 0px 0px 0px;
     }
+
     .category{
         margin-left: 30px;
     }
