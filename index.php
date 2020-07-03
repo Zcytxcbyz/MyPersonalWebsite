@@ -6,7 +6,7 @@ $dbname = 'zcytxcbyz';
 try {
     $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT name FROM types WHERE enabled=1"); 
+    $stmt = $conn->prepare("SELECT name FROM types WHERE enabled=1 ORDER BY Id"); 
     $stmt->execute();
     $types = $stmt->fetchAll(PDO::FETCH_COLUMN);
     $class='dropdown-item';//若要激活加'active'
@@ -20,7 +20,7 @@ try {
     }
     $main=null;
     for ($i=0; $i < count($types); $i++) { 
-        $stmt = $conn->prepare("SELECT title,`describe` FROM `index` WHERE type='$types[$i]'"); 
+        $stmt = $conn->prepare("SELECT title,`describe` FROM `index` WHERE type='$types[$i]' ORDER BY Id"); 
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $main.='<div class="type" id="'.$types[$i].'">';
