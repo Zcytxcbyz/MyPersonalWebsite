@@ -4,6 +4,7 @@
 
 body{
     background-color:whitesmoke;
+    margin: auto;
 }
 
 .login{
@@ -52,7 +53,7 @@ body{
 }
 
 .login .captcha input{
-    width: 80px;
+    width: 70px;
 }
 
 .login .submit{
@@ -66,7 +67,7 @@ body{
 
 .login .captcha_img{
     float: right;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .login .captcha_img a{
@@ -93,3 +94,7 @@ body{
     background-color: hsl(80, 61%, 40%);
 }
 
+.login #info{
+    color:red;
+    text-align: center;
+}

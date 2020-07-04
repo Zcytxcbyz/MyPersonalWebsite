@@ -1,0 +1,122 @@
+*{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+    margin: auto;
+}
+
+.leftNav{
+    background-color: black;
+    width: 80px;
+    float: left;
+}
+
+.mainContent{
+    background-color: whitesmoke;
+    overflow: hidden;
+}
+
+.leftNav,.mainContent{
+    min-height: 600px;
+}
+
+.leftNav ul{
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.leftNav a{
+    display: block;
+    color: hsl(0, 0%, 80%);
+    text-decoration: none;
+    font-size: larger;
+    padding: 8px 16px;
+}
+
+.leftNav a:hover{
+    color: hsl(0, 0%, 90%);
+    background-color: hsl(0, 0%, 20%);
+}
+
+.leftNav a.active{
+    color: white;
+    background-color: hsl(0, 0%, 30%);
+}
+
+.mainContent .categories{
+    background-color: hsl(0, 0%, 25%);
+    min-height: 600px;
+    width: 200px;
+    float: left;
+}
+
+.mainContent .categories a{
+    display: block;
+    color: hsl(0, 0%, 80%);
+    text-decoration: none;
+    font-size: larger;
+    padding: 8px 16px;
+    background-color: hsl(0, 0%, 20%);
+}
+
+.mainContent .categories ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    border-top-style: solid;
+    border-top-color:gray;
+    border-top-width: 1px;
+}
+
+.mainContent .categories li{
+    border-bottom-style: solid;
+    border-bottom-color:gray;
+    border-bottom-width: 1px;
+}
+
+.mainContent .categories a:hover{
+    background-color: hsl(0, 0%, 15%);
+}
+
+.mainContent .categories a.active{
+    background-color: hsl(0, 0%, 10%);
+    color:white;
+}
+
+.mainContent .categories .drop-list a{
+    background-color: hsl(0, 0%, 35%);
+    color:hsl(0, 0%, 90%);
+    font-size: large;
+    padding: 6px 16px;
+}
+
+.mainContent .categories .drop-list a:hover{
+    background-color: hsl(0, 0%, 30%);
+}
+.mainContent .categories .drop-list a.active{
+    background-color: hsl(0, 0%, 25%);
+    color: white;
+}
+
+.mainContent .categories .drop-list{
+    display: none;
+}
+
+.mainContent .pages{
+    background-color: hsl(0, 0%, 50%);;
+}
+
+.mainContent .pages a{
+    background-color: hsl(0, 0%, 40%);;
+}
+
+.mainContent .pages a:hover{
+    background-color: hsl(0, 0%, 35%);;
+}
+
+.mainContent .pages a.active{
+    background-color: hsl(0, 0%, 30%);;
+}
