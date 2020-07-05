@@ -1,8 +1,10 @@
 <?php 
 session_start();
-$_SESSION['login']='true';
+//$_SESSION['login']='true';
+if(!isset($_SESSION['navItem'])){
+    $_SESSION['navItem']='pages';
+}
 if(isset($_SESSION['login'])&&$_SESSION['login']=='true'){
-    session_destroy();
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,17 +18,18 @@ if(isset($_SESSION['login'])&&$_SESSION['login']=='true'){
 <body>
     <div class="leftNav">
         <ul>
-            <li><a href="#" class="active">页面</a></li>
-            <li><a href="#">教程</a></li>
-            <li><a href="#">版块</a></li>
-            <li><a href="#">工具</a></li>
-            <li><a href="#">图库</a></li>
-            <li><a href="#">密码</a></li>
-            <li><a href="#">查询</a></li>
+            <li><a href="#" id="pages" class="<?php if($_SESSION['navItem']=='pages')echo 'active';?>">页面</a></li>
+            <li><a href="#" id="courses" class="<?php if($_SESSION['navItem']=='courses')echo 'active';?>">教程</a></li>
+            <li><a href="#" id="sections" class="<?php if($_SESSION['navItem']=='sections')echo 'active';?>">版块</a></li>
+            <li><a href="#" id="tools" class="<?php if($_SESSION['navItem']=='tools')echo 'active';?>">工具</a></li>
+            <li><a href="#" id="gallery" class="<?php if($_SESSION['navItem']=='gallery')echo 'active';?>">图库</a></li>
+            <li><a href="#" id="password" class="<?php if($_SESSION['navItem']=='password')echo 'active';?>">密码</a></li>
+            <li><a href="#" id="query" class="<?php if($_SESSION['navItem']=='query')echo 'active';?>">查询</a></li>
         </ul>
     </div>
     <div class="mainContent">
-        <?php 
+        <?php
+        if($_SESSION['navItem']=='pages'){
         $username = 'admin';
         $password = 'aa88012361';
         $dbname = 'zcytxcbyz';
@@ -70,6 +73,9 @@ if(isset($_SESSION['login'])&&$_SESSION['login']=='true'){
             </div>
             <textarea class="contenteditor"></textarea>
         </div>
+        <?php 
+        }
+        ?>
     </div>
 </body>
 </html>

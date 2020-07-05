@@ -2,6 +2,14 @@ $(document).ready(function () {
     $(".leftNav a").on("click",function () { 
         $(".leftNav a[class=active]").attr("class","");
         $(this).attr("class","active");
+        $.post("action.php", {
+            "type":"leftNavClick",
+            "navItem":$(this).attr("id")
+        },
+            function (response) {
+                if(response=="1") location.reload();
+            }
+        );
     });
     $(".mainContent .categories>ul>li>a").on("click",function () { 
         $(this).parent().siblings().children("a[class=active]").attr("class","");

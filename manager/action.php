@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $username = 'admin';
 $password = 'aa88012361';
@@ -81,6 +82,17 @@ try{
         $conn=null;
         if($result) echo true;
         else echo false;
+    }
+    if($_POST['type']=='leftNavClick'){
+        try{
+            $navItem = $_POST['navItem'];
+            $_SESSION['navItem'] = $navItem;
+            echo true;
+        }
+        catch(Exception $e)
+        {
+            echo false;
+        }
     }
 }
 catch(Exception $e){
