@@ -55,13 +55,20 @@ if(isset($_SESSION['login'])&&$_SESSION['login']=='true'){
             echo '<script>alert("'.$e->getMessage().'");</script>';
         }
         ?>
-        <div class="categories pages">
+        <div class="categories pages" id="pages">
             <ul>
-                <li><a href="#" class="active">item</a></li>
-                <li><a href="#">item</a></li>
-                <li><a href="#">item</a></li>
-                <li><a href="#">item</a></li>
+                <li><a href="#">请先选择左侧</a></li>
             </ul>
+        </div>
+        <div class="pagecontent">
+            <div class="toolbar">
+                <label for="title">标题</label>
+                <input type="text" id="title">
+                <button onclick="del()">删除</button>
+                <button onclick="save()">保存</button>
+                <button onclick="add()">添加</button>
+            </div>
+            <textarea class="contenteditor"></textarea>
         </div>
     </div>
 </body>
