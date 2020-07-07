@@ -4,8 +4,11 @@
         "createtime",
         "delpage",
         "loadpages",
+        "loadtypes",
         "pagecontent",
         "paremark",
-        "savepage"
+        "savepage",
+        "typecontent",
+        "typeeditor"
     ]
 }

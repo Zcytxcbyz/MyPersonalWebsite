@@ -1,6 +1,6 @@
 <?php 
 session_start();
-//$_SESSION['login']='true';
+$_SESSION['login']='true';
 if(!isset($_SESSION['navItem'])){
     $_SESSION['navItem']='pages';
 }
@@ -74,6 +74,52 @@ if(isset($_SESSION['login'])&&$_SESSION['login']=='true'){
             <textarea class="contenteditor"></textarea>
         </div>
         <?php 
+        }
+        else if($_SESSION['navItem']=='courses'){
+        $username = 'admin';
+        $password = 'aa88012361';
+        $dbname = 'zcytxcbyz';
+        try {
+            $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->prepare("SELECT name FROM types WHERE enabled=1 ORDER BY Id"); 
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            echo  '<div class="categories" id="types"><ul>';
+            foreach ($results as $item) {
+                echo '<li><a href="#">'.$item.'</a></li>';
+            }
+            echo '<ul/></div>';
+            $conn=null;
+        }
+        catch(Exception $e)
+        {
+            echo '<script>alert("'.$e->getMessage().'");</script>';
+        }
+        ?>
+        <div class="typecontent">
+            <div class="toolbar">
+                <button onclick="type_add()">添加</button>
+                <button onclick="reload()">刷新</button>
+                <button onclick="type_del()">删除</button>
+                <button onclick="type_save()">保存</button>
+            </div>
+            <div class="typeeditor">
+                <table>
+                    <tr>
+                        <th id="id">ID</th>
+                        <th id="title">标题</th>
+                        <th id="describe">描述</th>
+                    </tr>
+                    <tr id="1" onclick="row_click(1)">
+                        <td name="id">1</td>
+                        <td><input type="text" name="title"></td>
+                        <td><input type="text" name="describe"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <?php
         }
         ?>
     </div>

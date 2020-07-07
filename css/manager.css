@@ -20,7 +20,8 @@ body{
 .leftNav,
 .mainContent,
 .mainContent .categories,
-.mainContent .pagecontent{
+.mainContent .pagecontent,
+.mainContent .typecontent{
     min-height: 800px;
 }
 
@@ -134,7 +135,6 @@ body{
 }
 
 .mainContent .pagecontent .toolbar{
-    width: 100%;
     height: 50px;
     background-color: hsl(0, 0%, 30%);
     color:white;
@@ -148,7 +148,6 @@ body{
 .mainContent .pagecontent .contenteditor{
     background-color: hsl(0, 0%, 40%);
     color:hsl(0, 0%, 95%);
-    width: 100%;
     min-height: 740px;
     min-width: 100%;
     border-style: solid;
@@ -173,4 +172,73 @@ body{
 
 .mainContent .pagecontent .toolbar button:hover{
     background-color: hsl(0, 0%, 90%);
+}
+
+.mainContent .typecontent{
+    overflow: hidden;
+}
+
+.mainContent .typecontent .toolbar{
+    background-color: hsl(0, 0%, 30%);
+    padding: 10px 20px;
+}
+
+.mainContent .typecontent .toolbar button{
+    margin-right: 10px;
+    background-color: lightgray;
+    border-style: none;
+    cursor: default;
+}
+
+.mainContent .typecontent .toolbar button:hover{
+    background-color: hsl(0, 0%, 90%);
+}
+
+.mainContent .typecontent .typeeditor{
+    min-height: 600px;
+    padding: 20px 20px 20px 20px;
+}
+
+
+.mainContent .typecontent .typeeditor table{
+    border-collapse: collapse;
+}
+
+.mainContent .typecontent .typeeditor table tr.active{
+    background-color: hsl(0, 0%, 30%);
+}
+
+.mainContent .typecontent .typeeditor table th,td{
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    color:hsl(0, 0%, 90%);
+}
+
+.mainContent .typecontent .typeeditor table th{
+    cursor: default;
+}
+
+.mainContent .typecontent .typeeditor table input{
+    width: 100%;
+    background: none;
+    border: none;
+    color:hsl(0, 0%, 90%);
+}
+
+.mainContent .typecontent .typeeditor table #id{
+    width: 5%;
+}
+
+.mainContent .typecontent .typeeditor table #title{
+    width: 20%;
+}
+
+.mainContent .typecontent .typeeditor table #describe{
+    width: 75%;
+}
+
+.mainContent .typecontent .typeeditor table td[name=id]{
+    text-align: center;
+    cursor: default;
 }

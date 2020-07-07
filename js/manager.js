@@ -23,6 +23,8 @@ $(document).ready(function () {
     $(".mainContent .drop-list a").on("click",function () {
         $(".mainContent .drop-list a[class=active]").attr("class","");
         $(this).attr("class","active");
+        $("#title").val("");
+        $(".contenteditor").val("");
         $.post("action.php", {
             "type":"loadpages",
             "category":$(this).text()
@@ -35,6 +37,16 @@ $(document).ready(function () {
     });
     $("#categories a").on("click",function () {
         changeHeight();
+    });
+    $(".mainContent #types a").on("click",function () {
+        $.post("action.php", {
+            "type":"loadtypes",
+            "course":$(this).text()
+        },
+            function (response) {
+                $(".mainContent .typecontent .typeeditor").html(response);
+            }
+        );
     });
 });
 
@@ -143,10 +155,55 @@ function del() {
                     },
                 );
                 alert("删除成功");
+                $("#title").val("");
+                $(".contenteditor").val("");
             }
             else{
                 alert("删除失败");
             }
         },
     );
+}
+
+function reload() {  
+    location.reload();
+}
+
+function type_add() {
+    var selector=".mainContent .typecontent .typeeditor table";  
+    var id=parseInt($(selector+" tr:last-child").attr("id"))+1;
+    $(selector)
+    .append('<tr id="'+String(id)
+    +'" onclick="row_click('+String(id)
+    +')"><td name="id">'+String(id)
+    +'</td><td><input type="text" name="title"></td><td><input type="text" name="describe"></td></tr>');
+}
+
+function type_save() { 
+    var data=new Array();
+    var length=parseInt($(".typeeditor tr:last-child").attr("id"));
+    for (var i = 0; i < length; i++) {
+        var title=$(".typeeditor tr#"+String(i+1)+" input[name=title]").val();
+        var describe=$(".typeeditor tr#"+String(i+1)+" input[name=describe]").val();
+        data[i]={id:i,title:title,describe:describe};
+    }
+    $.post("action.php", {
+        type:"type_save",
+        data:data
+    },
+        function (response) {
+            alert(response);
+        }
+    );
+}
+
+function type_del(){
+    if(confirm("是否永久删除记录？（不可恢复）")){
+        $(".mainContent .typecontent .typeeditor table tr[class=active]").remove();
+    }
+}
+
+function row_click(id) {
+    $("#"+String(id)).siblings("tr[class=active]").attr("class","");
+    $("#"+String(id)).attr("class","active");
 }

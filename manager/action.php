@@ -94,6 +94,31 @@ try{
             echo false;
         }
     }
+    if($_POST['type']=='loadtypes'){
+        $course=$_POST['course'];
+        $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("SELECT title,`describe` FROM `index` WHERE type=:course ORDER BY Id");
+        $stmt->bindValue(':course',$course);
+        $stmt->execute();
+        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        $html='<table><tr><th id="id">ID</th><th id="title">标题</th><th id="describe">描述</th></tr>';
+        $id=0;
+        $_SESSION['data']=array();
+        foreach ($result as $item) {
+            $html.='<tr id="'.++$id.'" onclick="row_click('.$id.')"><td name="id">'.$id.'</td>';
+            $html.='<td><input type="text" name="title" value="'.$item['title'].'"></td>';
+            $html.='<td><input type="text" name="describe"  value="'.$item['describe'].'"></td></tr>';
+            $_SESSION['data'][$id]=array("id"=>$id,"title"=>$item['title'],"describe"=>$item['describe']);
+        }
+        $html.="</table>";
+        echo $html;
+    }
+    if($_POST['type']=='type_save'){
+        $data=$_POST['data'];
+        $data0=$_SESSION['data'];
+        echo 0;
+    }
 }
 catch(Exception $e){
     echo $e->getMessage();
