@@ -166,7 +166,14 @@ function del() {
 }
 
 function reload() {  
-    location.reload();
+    $.post("action.php", {
+        "type":"loadtypes",
+        "course":$(".mainContent #types a[class=active]").text()
+    },
+        function (response) {
+            $(".mainContent .typecontent .typeeditor").html(response);
+        }
+    );
 }
 
 function type_add() {
@@ -181,20 +188,36 @@ function type_add() {
 
 function type_save() { 
     var data=new Array();
-    var length=parseInt($(".typeeditor tr:last-child").attr("id"));
-    for (var i = 0; i < length; i++) {
-        var title=$(".typeeditor tr#"+String(i+1)+" input[name=title]").val();
-        var describe=$(".typeeditor tr#"+String(i+1)+" input[name=describe]").val();
-        data[i]={id:i,title:title,describe:describe};
+    var isEmpty=false;
+    $(".typeeditor tr:has(td)").each(function () { 
+        var id=$(this).attr("id");
+        var title=$(this).find("input[name=title]").val();
+        var describe=$(this).find("input[name=describe]").val();
+        if(title.search(/^\s+$/)<0
+        &&describe.search(/^\s+$/)<0
+        &&title!=''
+        &&describe!=''){
+            data.push({id:id,title:title,describe:describe});
+        }
+        else {
+            isEmpty=true;
+        }
+    });
+    if(isEmpty){
+        alert("记录不能为空");
     }
-    $.post("action.php", {
-        type:"type_save",
-        data:data
-    },
+    else{
+        $.post("action.php", {
+            type:"type_save",
+            data:data,
+            course:$(".mainContent #types a[class=active]").text()
+        },
         function (response) {
+            reload();
             alert(response);
         }
     );
+}
 }
 
 function type_del(){

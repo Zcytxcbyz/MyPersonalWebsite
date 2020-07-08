@@ -98,7 +98,7 @@ try{
         $course=$_POST['course'];
         $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT title,`describe` FROM `index` WHERE type=:course ORDER BY Id");
+        $stmt = $conn->prepare("SELECT Id,title,`describe` FROM `index` WHERE type=:course ORDER BY Id");
         $stmt->bindValue(':course',$course);
         $stmt->execute();
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -109,19 +109,83 @@ try{
             $html.='<tr id="'.++$id.'" onclick="row_click('.$id.')"><td name="id">'.$id.'</td>';
             $html.='<td><input type="text" name="title" value="'.$item['title'].'"></td>';
             $html.='<td><input type="text" name="describe"  value="'.$item['describe'].'"></td></tr>';
-            $_SESSION['data'][$id]=array("id"=>$id,"title"=>$item['title'],"describe"=>$item['describe']);
+            $_SESSION['data'][$id-1]=array("id"=>$id,"title"=>$item['title'],"describe"=>$item['describe'],"SQLId"=>$item['Id']);
         }
         $html.="</table>";
         echo $html;
     }
     if($_POST['type']=='type_save'){
-        $data=$_POST['data'];
-        $data0=$_SESSION['data'];
-        echo 0;
+        $data=find_diff($_POST['data'],$_SESSION['data']);
+        $course=$_POST['course'];
+        try{
+            $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->beginTransaction();
+            foreach ($data['insert'] as $value) {
+                $stmt = $conn->prepare("INSERT INTO `index`(title,`describe`,`type`) 
+                VALUES(:title,:describe,:type)");
+                $stmt->bindValue(':title',$value['title']);
+                $stmt->bindValue(':describe',$value['describe']);
+                $stmt->bindValue(':type',$course);
+                $stmt->execute();
+            }
+            foreach ($data['update'] as $value) {
+                $stmt = $conn->prepare("UPDATE `index` 
+                SET title=:title,`describe`=:describe
+                WHERE Id=:id");
+                $stmt->bindValue(':title',$value['title']);
+                $stmt->bindValue(':describe',$value['describe']);
+                $stmt->bindValue(':id',$value['id']);
+                $stmt->execute();
+            }
+            foreach ($data['delete'] as $value) {
+                $stmt = $conn->prepare("DELETE FROM `index` 
+                WHERE Id=:id");
+                $stmt->bindValue(':id',$value['id']);
+                $stmt->execute();
+            }
+            $result=$conn->commit();
+            if($result) echo '保存成功';
+            else echo '保存失败';
+        }
+        catch(Exception $e){
+            $conn->rollBack();
+            echo $e->getMessage();
+        }
     }
 }
 catch(Exception $e){
     echo $e->getMessage();
 }
 }
+
+function find_diff($a,$b)
+{
+    $insert=array();$delete=array();$update=array();
+    for($i=0;$i<count($a);$i++){
+        for($j=0;$j<count($b);$j++)
+            if($a[$i]['id']==$b[$j]['id']) break;
+        if($j<count($b)){
+            if($a[$i]['title']!=$b[$j]['title']
+            ||$a[$i]['describe']!=$b[$j]['describe']){
+                array_push($update,
+                array('title'=>$a[$i]['title'],'describe'=>$a[$i]['describe'],'id'=>$b[$j]['SQLId']));
+            }
+        }
+        else{
+            array_push($insert,
+            array('title'=>$a[$i]['title'],'describe'=>$a[$i]['describe']));
+        }
+    }
+    for($i=0;$i<count($b);$i++){
+        for($j=0;$j<count($a);$j++)
+            if($a[$j]['id']==$b[$i]['id']) break;
+        if($j>=count($a)){
+            array_push($delete,
+            array('title'=>$b[$i]['title'],'describe'=>$b[$i]['describe'],'id'=>$b[$i]['SQLId']));
+        }
+    }
+    return array("insert"=>$insert,"update"=>$update,"delete"=>$delete);
+}
+
 ?>
