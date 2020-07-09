@@ -27,7 +27,7 @@ $WebsiteName='Zcytxcbyz';
                 <li class="nav-item<?php if($title=='主页') echo ' active'?>">
                     <a class="nav-link" href="index.php">主页</a>
                 </li>
-                <li class="nav-item<?php if($title=='教程') echo ' active'?>">
+                <li class="nav-item<?php if(isset($isCourse)&&$isCourse) echo ' active'?>">
                     <a class="nav-link" href="#">教程</a>
                 </li>
                 <li class="nav-item<?php if($title=='工具') echo ' active'?>">
