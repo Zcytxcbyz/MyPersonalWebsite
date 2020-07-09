@@ -154,6 +154,7 @@ body{
     border-width: 1px;
     border-color: hsl(0, 0%, 65%);
     font-size: medium;
+    resize: none;
 }
 
 .mainContent .pagecontent .toolbar input{
