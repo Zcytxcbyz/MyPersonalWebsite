@@ -8,9 +8,11 @@ $WebsiteName='Zcytxcbyz';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/Default.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/Default.js"></script>
     <title><?php echo $title?></title>
 </head>
 <body>
@@ -54,9 +56,11 @@ $WebsiteName='Zcytxcbyz';
             </div>
         </div>
         <div class="rightContent">
+            <?php if(isset($toolbar)) echo $toolbar?>
             <div class="main">
                 <?php if(isset($main)) echo $main?>
             </div>
+            <?php if(isset($toolbar)) echo $toolbar?>
         </div>
     </div>
     <div class="bottom"> 

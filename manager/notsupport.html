@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .not_support{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: steelblue;
+            margin-top: 80px;
+            text-align: center;
+            float: left; 
+            padding: 0 20px 20px 20px;
+            color:hsl(0, 0%, 95%);
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            border-radius: 3%;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            document.body.style.backgroundColor="darkgray";
+            document.body.innerHTML='<div class="not_support"><h1>您的浏览器不支持</h1><span>Your browser does not support it.</span></div>';
+            set_point();
+        }
+        window.onresize=function () { 
+            set_point(); 
+        };
+        function set_point() {
+            var winwidth=window.innerWidth;
+            var winheight=window.innerHeight;
+            var not_support=document.getElementsByClassName("not_support")[0];
+            var style=document.defaultView.getComputedStyle(not_support);
+            var height=parseFloat(style.height.replace(/px/i,""));
+            var width=parseFloat(style.width.replace(/px/i,""));
+            if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                not_support.style.marginLeft=String((winwidth-width)*0.1)+"px";
+                not_support.style.marginTop=String((winheight-height)*0.3)+"px";
+            } else {
+                not_support.style.marginLeft=String((winwidth-width)*0.45)+"px";
+                not_support.style.marginTop=String((winheight-height)*0.3)+"px";
+            } 
+    }
+    </script>
+    <title>Not support</title>
+</head>
+<body>
+
+</body>
+</html>

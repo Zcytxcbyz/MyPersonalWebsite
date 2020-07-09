@@ -167,3 +167,32 @@ body{
     }
 }
 
+
+.toolbar{
+    background-color: hsl(0, 0%, 90%);
+    overflow: hidden;
+    padding: 10px 30px;
+    margin: 0px 10px 0px 20px;
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.1);
+}
+
+.toolbar .prev{
+    float: left;
+}
+
+.toolbar .next{
+    float: right;
+}
+
+.toolbar a{
+    text-decoration: none;
+    color:hsl(0, 0%, 40%);
+}
+
+.toolbar a:hover{
+    color:hsl(0, 0%, 60%);
+}
+
+.toolbar span{
+    margin: 0 8px;
+}

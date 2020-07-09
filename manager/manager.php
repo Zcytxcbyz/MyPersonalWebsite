@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$_SESSION['login']='true';
+//$_SESSION['login']='true';
 if(!isset($_SESSION['navItem'])){
     $_SESSION['navItem']='pages';
 }
@@ -137,6 +137,19 @@ else{
     <link rel="stylesheet" href="../css/login.css">
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="../js/login.js"></script>
+    <style>
+    .not_support{
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: steelblue;
+        margin-top: 80px;
+        text-align: center;
+        float: left; 
+        padding: 0 20px 20px 20px;
+        color:hsl(0, 0%, 95%);
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        border-radius: 3%;
+    }
+    </style>
     <title>登录</title>
 </head>
 <body>
@@ -157,10 +170,40 @@ else{
         <div id="info"></div>
         <div class="submit">
             <input type="button" value="确&nbsp;认" id="submit">
-        </div>    
+        </div>
     </form>
 </body>
 </html>
+
+<script>
+    window.onload=function(){
+        var login=document.getElementsByClassName("login")[0];
+        if(document.defaultView.getComputedStyle(login).display=="none"){
+            document.body.style.backgroundColor="darkgray";
+            document.body.innerHTML='<div class="not_support"><h1>您的浏览器不支持</h1><span>Your browser does not support it.</span></div>';
+            set_point();
+        }
+    }
+    window.onresize=function () { 
+        set_point(); 
+    };
+    function set_point() {
+        var winwidth=window.innerWidth;
+        var winheight=window.innerHeight;
+        var not_support=document.getElementsByClassName("not_support")[0];
+        var style=document.defaultView.getComputedStyle(not_support);
+        var height=parseFloat(style.height.replace(/px/i,""));
+        var width=parseFloat(style.width.replace(/px/i,""));
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            not_support.style.marginLeft=String((winwidth-width)*0.1)+"px";
+            not_support.style.marginTop=String((winheight-height)*0.3)+"px";
+        } else {
+            not_support.style.marginLeft=String((winwidth-width)*0.45)+"px";
+            not_support.style.marginTop=String((winheight-height)*0.3)+"px";
+        } 
+    }
+</script>
+
 <?php 
 }
 ?>

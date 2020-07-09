@@ -26,7 +26,13 @@ try {
         $main.='<div class="type" id="'.$types[$i].'">';
         $main.='<h2>'.$types[$i].'</h2>';
         foreach($result as $item){
-            $main.='<a class="category" href="#">';
+            $stmt = $conn->query('SELECT `hash` FROM courses 
+            WHERE category=\''.$item['title'].'\' ORDER BY Id');
+            $hash=$stmt->fetch(PDO::FETCH_COLUMN);
+            if($hash!=false)
+                $main.='<a class="category" href="course.php?id='.$hash.'">';
+            else
+                $main.='<a class="category" href="#">';
             $main.='<h4>'.$item['title'].'</h4>';
             $main.='<p>'.$item['describe'].'</p>';
             $main.='</a>';
@@ -34,9 +40,9 @@ try {
         $main.='</div><br/>';
     }
 }
-catch(Exception $e)
-{
-    echo '<script>alert("'.$e->getMessage().'");</script>';
+catch(PDOException $e){
+    header("Status: 404 Not Found");
+    exit();
 }
 include('templates/Default.php');
 ?>
